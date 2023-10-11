@@ -1,5 +1,5 @@
 function showModal(text, options) {
-    const modal = document.createElement('div');
+    const modal = document.createElement('body');
     modal.classList.add('modal');
     modal.id = 'myModal';
 
@@ -49,10 +49,13 @@ function showModal(text, options) {
 document.getElementById('openModal').addEventListener('click', function () {
     const options = {
         animation: 'slide-in', // fade, slide-in, zoom
-        size: 'large',  // small, medium, large
+        size: 'small',  // small, medium, large
         closeButton: true, // will show close button if true
-        overlayClickClose: true // will close modal if clicked on overlay
+        overlayClickClose: false // will close modal if clicked on overlay
     };
 
     showModal('Hello, World!', options);
 });
+
+
+
