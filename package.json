@@ -1,0 +1,22 @@
+{
+  "name": "awesome-modals",
+  "version": "1.0.0",
+  "description": "A flexible modal library offering a variety of animations, sizes, and functionalities.",
+  "main": "modal.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MTadic992/Modal-Libraray.git"
+  },
+  "keywords": [
+    "modal"
+  ],
+  "author": "Mario",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MTadic992/Modal-Libraray/issues"
+  },
+  "homepage": "https://github.com/MTadic992/Modal-Libraray#readme"
+}

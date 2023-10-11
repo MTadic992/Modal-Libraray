@@ -32,13 +32,17 @@ function showModal(text, options) {
 
     modalContent.appendChild(modalText);
 
+    const hideModal = () => {
+        modal.style.display = 'none';
+    };
+
     modal.appendChild(modalContent);
     document.body.appendChild(modal);
 
     if (options.overlayClickClose) {
         modal.addEventListener('click', function (event) {
             if (event.target === modal) {
-                modal.style.display = 'none';
+                hideModal();
             }
         });
     }
@@ -49,7 +53,7 @@ function showModal(text, options) {
 document.getElementById('openModal').addEventListener('click', function () {
     const options = {
         animation: 'slide-in', // fade, slide-in, zoom
-        size: 'small',  // small, medium, large
+        size: 'large',  // small, medium, large
         closeButton: true, // will show close button if true
         overlayClickClose: false // will close modal if clicked on overlay
     };
