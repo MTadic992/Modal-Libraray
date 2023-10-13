@@ -1,6 +1,6 @@
 {
   "name": "awesome-modals",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A flexible modal library offering a variety of animations, sizes, and functionalities.",
   "main": "modal.js",
   "scripts": {

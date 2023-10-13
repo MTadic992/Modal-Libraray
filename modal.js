@@ -74,4 +74,6 @@ function showModal(text, options) {
 }
 
 
-export default showModal;
+export default Modal = {
+    show: showModal, hide: hideModal
+};
