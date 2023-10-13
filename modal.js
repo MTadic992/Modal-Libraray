@@ -1,8 +1,11 @@
-function showModal(text, options) {
-    const modal = document.createElement('body');
+function createModalElement() {
+    const modal = document.createElement('div');
     modal.classList.add('modal');
     modal.id = 'myModal';
+    return modal;
+}
 
+function createModalContent(options) {
     const modalContent = document.createElement('div');
     modalContent.classList.add('modal-content');
 
@@ -14,52 +17,61 @@ function showModal(text, options) {
         modalContent.classList.add(options.animation);
     }
 
-    if (options.closeButton) {
-        const closeButton = document.createElement('span');
-        closeButton.classList.add('close');
-        closeButton.id = 'closeModal';
-        closeButton.innerHTML = '&times;';
+    return modalContent;
+}
 
-        closeButton.addEventListener('click', function () {
-            modal.style.display = 'none';
+function addModalText(modalText) {
+    const modalTextElement = document.createElement('p');
+    modalTextElement.textContent = modalText;
+    return modalTextElement;
+}
+
+function createCloseButton(modal) {
+    const closeButton = document.createElement('span');
+    closeButton.classList.add('close');
+    closeButton.id = 'closeModal';
+    closeButton.innerHTML = '&times;';
+
+    closeButton.addEventListener('click', function () {
+        hideModal(modal);
+    });
+
+    return closeButton;
+}
+
+function hideModal(modal) {
+    modal.style.display = 'none';
+}
+
+function showOverlayClickClose(modal, options) {
+    if (options.overlayClickClose) {
+        modal.addEventListener('click', function (event) {
+            if (event.target === modal) {
+                hideModal(modal);
+            }
         });
+    }
+}
 
+function showModal(text, options) {
+    const modal = createModalElement();
+    const modalContent = createModalContent(options);
+    const modalTextElement = addModalText(text);
+
+    modalContent.appendChild(modalTextElement);
+
+    if (options.closeButton) {
+        const closeButton = createCloseButton(modal);
         modalContent.appendChild(closeButton);
     }
-
-    const modalText = document.createElement('p');
-    modalText.textContent = text;
-
-    modalContent.appendChild(modalText);
-
-    const hideModal = () => {
-        modal.style.display = 'none';
-    };
 
     modal.appendChild(modalContent);
     document.body.appendChild(modal);
 
-    if (options.overlayClickClose) {
-        modal.addEventListener('click', function (event) {
-            if (event.target === modal) {
-                hideModal();
-            }
-        });
-    }
-
     modal.style.display = 'block';
+
+    showOverlayClickClose(modal, options);
 }
 
-document.getElementById('openModal').addEventListener('click', function () {
-    const options = {
-        animation: 'slide-in', // fade, slide-in, zoom
-        size: 'large',  // small, medium, large
-        closeButton: true, // will show close button if true
-        overlayClickClose: false // will close modal if clicked on overlay
-    };
 
-    showModal('Hello, World!', options);
-});
-
-
-
+export default showModal;
